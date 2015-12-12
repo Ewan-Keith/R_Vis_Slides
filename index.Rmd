@@ -1,0 +1,423 @@
+---
+title       : The Joys of Data Visualisation Using R
+subtitle    : 
+author      : Ewan Keith
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## What is R?
+
+> * A statistical programming language.
+> * Most importantly, it is:
+   * Free!
+   * Open Source
+   * Under Constant Development
+
+--- 
+
+## Why Use R?
+
+> * It is desgined with statistics and statisticians in mind
+> * Provides a single platform for analysis and visualisation
+> *	Massive range of visualisation options
+> *	On the cutting edge/constantly updated 
+> *	Range of dissemination options
+> *	Shiny 
+
+
+---
+
+## Designed For Statistics
+
+> * Basic plots are very easy to produce
+> * also easily altered quickly
+> * Well suited to fast, exploratory visualisation
+
+
+---
+## Basic Plots are easy
+
+```{r echo = FALSE}
+# prep log-normal and iris data
+x <- rlnorm(500)
+data("iris")
+```
+
+```{r}
+plot(iris$Petal.Length, iris$Petal.Width)
+```
+
+---
+## Brief aside on Flower data
+
+
+
+---
+## Basic Plots are easy
+```{r}
+hist(x)
+```
+
+
+---
+## Plots easily altered
+```{r}
+x2 <- x[x < 10]
+hist(x2)
+```
+
+
+---
+## Plots easily altered
+```{r}
+hist(log(x))
+```
+
+
+---
+## Common Statistical Tasks Are Easily Handled
+
+> * Basic Statistical tasks are considered and easy to carry out.
+    * which they may not be in other programming languages.
+    
+> * Major reason to consider R over alternatives like Python or Matlab.
+
+> * Similar to SAS in this regard.
+
+
+---
+## Common Statistical Tasks Are Easily Handled
+
+```{r echo=FALSE}
+# load the lattice package for xyplot()
+library(lattice)
+```
+
+```{r}
+plot(iris$Petal.Length, iris$Petal.Width)
+```
+
+
+---
+## Common Statistical Tasks Are Easily Handled
+
+```{r}
+xyplot(Petal.Width ~ Petal.Length | Species,data = iris)
+```
+
+
+---
+## Common Statistical Tasks Are Easily Handled
+```{r}
+pairs(iris[,1:4])
+```
+
+
+---
+## Common Statistical Tasks Are Easily Handled
+
+* Model Checking can be time consuming given the number of assumptions that need checked
+
+```{r echo = FALSE}
+regression_model <- lm(Petal.Width ~ Petal.Length, data = iris)
+plot(iris$Petal.Width ~ iris$Petal.Length)
+abline(regression_model)
+```
+
+
+---
+## Common Statistical Tasks Are Easily Handled
+
+```{r eval = FALSE}
+plot(regression_model)
+```
+
+```{r echo = FALSE}
+par(mfrow=c(2,2))
+plot(regression_model)
+```
+
+
+---
+##	Publication Quality Plots are Easy
+
+> * Once a basic plot has been decided on it is easy to produce high quality versions for publication.
+> * Highly customisable and available in a range of formats.
+
+
+---
+## Publication Quality Plots are Easy
+
+```{r echo = FALSE}
+
+library(ggplot2)
+library(ggthemes)
+
+ggplot(iris, aes(Petal.Width, fill=Species)) +
+  geom_density(alpha=0.5) + scale_color_fivethirtyeight() +
+ theme_fivethirtyeight() + ggtitle("Petal Width Distribution")
+```
+
+
+---
+## Publication Quality Plots are Easy
+
+```{r echo = FALSE}
+ggplot(iris, aes(x = Petal.Length, y = Petal.Width, color = Species)) + 
+    geom_point() + 
+    geom_smooth(method = lm) + scale_color_fivethirtyeight() +
+  theme_fivethirtyeight()
+```
+
+
+---
+## Designed for Statistics
+
+> *	All of the above can be done by any most other programming languages
+> * But not as easily, as neatly, or as quickly
+
+
+---
+## An Integrated Analysis & Visualisation Platform
+
+> * Allows you to easily move from analysis to visualisation.
+> * Keeps the workflow clean and can be stored in a single file.
+> * Allows for easy visualisation of complex analyses/models.
+> * Easy to replicate/extend plots for new data
+
+
+---
+## An Integrated Analysis & Visualisation Platform
+
+```{r echo = FALSE}
+# example taken from http://stackoverflow.com/questions/18424133/r-forecast-function-not-picking-up-seasonality
+sw<-c(2280, 1754, 1667, 1359, 1285, 1379, 2166, 1053, 1076, 1149, 1277, 1577, 1639, 1719, 1592, 2306, 3075, 2897, 1875, 1966, 2927, 3528, 2948, 2890, 3947, 3913, 3885, 4148, 5293, 5752, 6001, 7719, 5512, 6782, 6320, 6425, 6406, 7237, 8655, 9269, 12447, 13470, 13469, 13949, 17753, 17653, 14531, 14496, 13643, 12652, 12665, 10629, 8962, 8198, 6833, 5027, 4407, 4449, 4399, 5896, 6589, 3786, 4386, 4847, 5597, 5407, 4800, 7803, 9255, 10423, 5523, 8121, 6944, 8434, 9847, 9292, 9794, 10195, 10124, 11310, 12245, 12798, 14611, 15402, 13532, 16154, 15101, 14755, 17139, 16475, 19935, 19980, 25173, 28568, 27839, 28991, 27073, 29615, 25849, 27910, 27067, 21303, 20544, 15188, 13706, 9277, 10815, 7228, 4608, 4409, 9866, 8471, 8223, 6445, 6641, 6833, 11421, 8945, 8127, 10380, 12005, 13272, 9431, 12144, 14934, 14052, 11712, 14888, 15824, 17275, 18067, 19839, 21192, 22763, 22976, 23721, 22681, 20131, 19965, 20539, 19517, 22022, 23076, 30574, 40247, 43111, 39577, 40724, 44982, 44388, 46372, 43153, 36821, 32258, 31256, 27153, 23180, 18252, 16381, 13220, 12500, 10727, 9636, 8892, 8644, 9482, 9170, 10937, 12299, 15781, 11477, 16524, 16752, 18072, 14776, 13388, 18056, 19815, 21263, 22046, 26415, 24247, 25403, 30058, 26331, 32533, 31891, 35973, 27558, 24554, 25692, 25955, 24284, 24930, 28354, 34840, 40055, 42099, 42768, 48279, 50086, 56466, 42244, 51451, 44583, 39091, 33391, 29452, 25533)
+
+swts <- ts(sw, frequency=52, start=c(2006,30))
+
+swfc <- forecast(swts,h=52)
+
+lambda <- BoxCox.lambda(sw)
+swfc <- forecast(swts,h=52, lambda = lambda, robust = TRUE)
+plot(swfc)
+```
+
+
+---
+## An Integrated Analysis & Visualisation Platform
+
+```{r echo = FALSE}
+library(lavaan)
+
+# Example 5.8 from mplus user guide:
+Data <- read.table("http://www.statmodel.com/usersguide/chap5/ex5.8.dat")
+names(Data) <- c(paste("y", 1:6, sep = ""), paste("x", 1:3, sep = ""))
+
+# Model:
+model.Lavaan <- "f1 =~ y1 + y2 + y3\nf2 =~ y4 + y5 + y6\nf1 + f2 ~ x1 + x2 + x3 "
+
+# Run Lavaan:
+fit <- lavaan:::cfa(model.Lavaan, data = Data, std.lv = TRUE)
+
+# Plot path diagram:
+library(semPlot)
+semPaths(fit, title = FALSE, curvePivot = TRUE)
+```
+
+
+---
+## An Integrated Analysis & Visualisation Platform
+
+```{r echo = FALSE}
+# NOTE this package requires a seperate installation of JAGS software, will not be reproducable without this
+library(BayesianFirstAid)
+
+d <- read.csv("2d4d_hone_2012.csv")
+fit_male <- bayes.cor.test( ~ ratio_2d4d + grip_kg, data = d[ d$sex == "male",])
+plot(fit_male)
+```
+
+
+---
+## Massive Range of Visualisation Options
+
+> * 'Basic' Visualisations extremely well integrated
+> * But much greater flexibility is offered than in most other software packages
+> * Wide range of domain specific visualisation supported also (e.g. GIS)
+
+
+---
+## 'Basic' Charts
+
+```{r echo = FALSE}
+library(treemap)
+data(GNI2010)
+treemap(GNI2010,
+index=c("continent", "iso3"),
+vSize="population",
+vColor="GNI",
+type="value")
+```
+
+
+---
+## 'Basic' Charts
+```{r echo = FALSE}
+data("attitude")
+library(reshape2)
+qplot(x=Var1, y=Var2, data=melt(cor(attitude)), fill=value, geom="tile")
+```
+
+
+---
+## 'Basic' Charts
+```{r echo = FALSE}
+nodes <- read.csv("Dataset1-Media-Example-NODES.csv", header=T, as.is=T)
+links <- read.csv("Dataset1-Media-Example-EDGES.csv", header=T, as.is=T)
+suppressMessages(
+library(igraph)
+)
+net <- graph.data.frame(links, nodes, directed=T)
+plot(net, edge.arrow.size=.4,vertex.label=NA)
+
+```
+
+
+---
+## Specific Subject Areas
+
+> * R also has very strong capabilities in topic specific areas of visualisation
+> * e.g. Geographical Information Systems (GIS)
+>   * Again R excels here as a single analysis/visualisation environment.
+
+
+---
+## GIS Capabilities
+
+```{r echo=FALSE}
+suppressMessages(
+library(ggmap)
+)
+
+bristol.drugs <- read.csv("Bristol Drug Crimes.csv")
+load("Bristol map.rda")
+
+ggmap(bristol.map, extent = "device", legend = "topleft", extend = "panel") +
+    geom_point(
+      aes(x = Longitude, y = Latitude),
+      data = bristol.drugs, na.rm=T) +
+    ggtitle("Drug Crimes in Bristol\n from Feb 2014 - Feb 2015") +
+    theme(plot.title = element_text(lineheight=.8, face="bold"))
+
+```
+
+
+---
+## GIS Capabilities
+```{r echo = FALSE}
+ggmap(bristol.map, extent = "device", legend = "topleft", extend = "panel") +
+    stat_density2d(
+      aes(x = Longitude, y = Latitude, fill = ..level..),  alpha = .3,
+      data = bristol.drugs,
+      geom = "polygon", na.rm=T) +
+    ggtitle("Drug Crimes in Bristol\n from Feb 2014 - Feb 2015") +
+    theme(plot.title = element_text(lineheight=.8, face="bold"))
+
+```
+
+---
+## GIS Capabilities
+
+* Commute Example
+
+
+---
+## On Cutting Edge
+
+> * Constantly developed so new technology often encorporated
+> * Has powerful support to the D3 Javascript plotting library
+> * Google motion plots easily handled (if DII allowed Flash.)
+> * Ever increasing number of options for interactive plotting (plot.ly went open source in November for example)
+
+> * But just because this exists doesn't mean it always plays well with other packages. This includes slides...
+
+```{r eval = FALSE, echo = FALSE}
+
+## examples below to show outside slides, neccesary packages not all on CRAN so may be unavailable on the VM
+
+# library(threejs)
+# scatterplot3js(iris[,2:4], color=rainbow(3)[iris$Species], labels=iris$Species, renderer="canvas")
+
+# library(rCharts)
+# nPlot(Freq ~ Hair, group = 'Eye', data = hair_eye_male, type = 'multiBarChart')
+
+# library(rchess)
+# plot(Chess$new())
+
+
+```
+
+---
+## Range of Dissemination Options
+
+> * Not Limited to 'copy and pasting' images into word documents
+> * R can be used to produce, fully functional:
+> * Word Documents
+> * Web Pages
+> * PDF Documents
+> * and slide shows!
+
+
+---
+## Examples of Dissemination
+
+> * DEA Supplementary Web Page
+> * Treemap Documentation
+> * These slides
+> * Automatically updating report
+
+
+---
+## R Shiny
+
+> * Tool for producing interactive data applications
+> * Extremely Powerful and Versatile
+> * Can be hosted on a web server
+> * Only requires knowledge of R code
+> * Also completely Free
+
+```{r echo = FALSE}
+# examples
+# as visualisation of official numbers - US Labour Force 
+# learning tool - SS Reg
+# For exploring any complicated dataset - football
+# shiny stan - full blown analytical software
+
+```
+
+
+---
+## So What?
+
+> * R is currently available on the VM
+> * Introductory training in R is currently being organised by the department
+> * Working group set up recently to iron out any difficulties using R in MOD and look into extending functionality.
+
+
+---
+## Any Questions?
+
+
+
+
+
+
+
+
+

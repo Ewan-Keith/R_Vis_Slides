@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The Joys of Data Visualisation Using R</title>
+  <meta charset="utf-8">
+  <meta name="description" content="The Joys of Data Visualisation Using R">
+  <meta name="author" content="Ewan Keith">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>The Joys of Data Visualisation Using R</h1>
+    <h2></h2>
+    <p>Ewan Keith<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>What is R?</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>A statistical programming language.</li>
+<li>Most importantly, it is:
+
+<ul>
+<li>Free!</li>
+<li>Open Source</li>
+<li>Under Constant Development</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Why Use R?</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>It is desgined with statistics and statisticians in mind</li>
+<li>Provides a single platform for analysis and visualisation</li>
+<li>Massive range of visualisation options</li>
+<li>On the cutting edge/constantly updated </li>
+<li>Range of dissemination options</li>
+<li>Shiny </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Designed For Statistics</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>Basic plots are very easy to produce</li>
+<li>also easily altered quickly</li>
+<li>Well suited to fast, exploratory visualisation</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Basic Plots are easy</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">plot(iris$Petal.Length, iris$Petal.Width)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Brief aside on Flower data</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Basic Plots are easy</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">hist(x)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Plots easily altered</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">x2 &lt;- x[x &lt; 10]
+hist(x2)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Plots easily altered</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">hist(log(x))
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>Common Statistical Tasks Are Easily Handled</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li><p>Basic Statistical tasks are considered and easy to carry out.</p>
+
+<ul>
+<li>which they may not be in other programming languages.</li>
+</ul></li>
+<li><p>Major reason to consider R over alternatives like Python or Matlab.</p></li>
+<li><p>Similar to SAS in this regard.</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>Common Statistical Tasks Are Easily Handled</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">plot(iris$Petal.Length, iris$Petal.Width)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>Common Statistical Tasks Are Easily Handled</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">xyplot(Petal.Width ~ Petal.Length | Species,data = iris)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>Common Statistical Tasks Are Easily Handled</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">pairs(iris[,1:4])
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-9-1.png" alt="plot of chunk unnamed-chunk-9"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>Common Statistical Tasks Are Easily Handled</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Model Checking can be time consuming given the number of assumptions that need checked</li>
+</ul>
+
+<p><img src="assets/fig/unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>Common Statistical Tasks Are Easily Handled</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">plot(regression_model)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-12-1.png" alt="plot of chunk unnamed-chunk-12"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>Publication Quality Plots are Easy</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>Once a basic plot has been decided on it is easy to produce high quality versions for publication.</li>
+<li>Highly customisable and available in a range of formats.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h2>Publication Quality Plots are Easy</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-13-1.png" alt="plot of chunk unnamed-chunk-13"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h2>Publication Quality Plots are Easy</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-14-1.png" alt="plot of chunk unnamed-chunk-14"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <hgroup>
+    <h2>Designed for Statistics</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>All of the above can be done by any most other programming languages</li>
+<li>But not as easily, as neatly, or as quickly</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:;">
+  <hgroup>
+    <h2>An Integrated Analysis &amp; Visualisation Platform</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>Allows you to easily move from analysis to visualisation.</li>
+<li>Keeps the workflow clean and can be stored in a single file.</li>
+<li>Allows for easy visualisation of complex analyses/models.</li>
+<li>Easy to replicate/extend plots for new data</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-20" style="background:;">
+  <hgroup>
+    <h2>An Integrated Analysis &amp; Visualisation Platform</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-15-1.png" alt="plot of chunk unnamed-chunk-15"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-21" style="background:;">
+  <hgroup>
+    <h2>An Integrated Analysis &amp; Visualisation Platform</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## This is lavaan 0.5-20
+## lavaan is BETA software! Please report any bugs.
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-16-1.png" alt="plot of chunk unnamed-chunk-16"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-22" style="background:;">
+  <hgroup>
+    <h2>An Integrated Analysis &amp; Visualisation Platform</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-17-1.png" alt="plot of chunk unnamed-chunk-17"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-23" style="background:;">
+  <hgroup>
+    <h2>Massive Range of Visualisation Options</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>&#39;Basic&#39; Visualisations extremely well integrated</li>
+<li>But much greater flexibility is offered than in most other software packages</li>
+<li>Wide range of domain specific visualisation supported also (e.g. GIS)</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-24" style="background:;">
+  <hgroup>
+    <h2>&#39;Basic&#39; Charts</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-18-1.png" alt="plot of chunk unnamed-chunk-18"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-25" style="background:;">
+  <hgroup>
+    <h2>&#39;Basic&#39; Charts</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-19-1.png" alt="plot of chunk unnamed-chunk-19"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-26" style="background:;">
+  <hgroup>
+    <h2>&#39;Basic&#39; Charts</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-20-1.png" alt="plot of chunk unnamed-chunk-20"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-27" style="background:;">
+  <hgroup>
+    <h2>Specific Subject Areas</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>R also has very strong capabilities in topic specific areas of visualisation</li>
+<li>e.g. Geographical Information Systems (GIS)
+
+<ul>
+<li>Again R excels here as a single analysis/visualisation environment.</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-28" style="background:;">
+  <hgroup>
+    <h2>GIS Capabilities</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-21-1.png" alt="plot of chunk unnamed-chunk-21"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-29" style="background:;">
+  <hgroup>
+    <h2>GIS Capabilities</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-22-1.png" alt="plot of chunk unnamed-chunk-22"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-30" style="background:;">
+  <hgroup>
+    <h2>GIS Capabilities</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Commute Example</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-31" style="background:;">
+  <hgroup>
+    <h2>On Cutting Edge</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>Constantly developed so new technology often encorporated</li>
+<li>Has powerful support to the D3 Javascript plotting library</li>
+<li>Google motion plots easily handled (if DII allowed Flash.)</li>
+<li><p>Ever increasing number of options for interactive plotting (plot.ly went open source in November for example)</p></li>
+<li><p>But just because this exists doesn&#39;t mean it always plays well with other packages. This includes slides...</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-32" style="background:;">
+  <hgroup>
+    <h2>Range of Dissemination Options</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>Not Limited to &#39;copy and pasting&#39; images into word documents</li>
+<li>R can be used to produce, fully functional:</li>
+<li>Word Documents</li>
+<li>Web Pages</li>
+<li>PDF Documents</li>
+<li>and slide shows!</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-33" style="background:;">
+  <hgroup>
+    <h2>Examples of Dissemination</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>DEA Supplementary Web Page</li>
+<li>Treemap Documentation</li>
+<li>These slides</li>
+<li>Automatically updating report</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-34" style="background:;">
+  <hgroup>
+    <h2>R Shiny</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>Tool for producing interactive data applications</li>
+<li>Extremely Powerful and Versatile</li>
+<li>Can be hosted on a web server</li>
+<li>Only requires knowledge of R code</li>
+<li>Also completely Free</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-35" style="background:;">
+  <hgroup>
+    <h2>So What?</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>R is currently available on the VM</li>
+<li>Introductory training in R is currently being organised by the department</li>
+<li>Working group set up recently to iron out any difficulties using R in MOD and look into extending functionality.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-36" style="background:;">
+  <hgroup>
+    <h2>Any Questions?</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='What is R?'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Why Use R?'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Designed For Statistics'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Basic Plots are easy'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Brief aside on Flower data'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Basic Plots are easy'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Plots easily altered'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Plots easily altered'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Common Statistical Tasks Are Easily Handled'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Common Statistical Tasks Are Easily Handled'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Common Statistical Tasks Are Easily Handled'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Common Statistical Tasks Are Easily Handled'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Common Statistical Tasks Are Easily Handled'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Common Statistical Tasks Are Easily Handled'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Publication Quality Plots are Easy'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Publication Quality Plots are Easy'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Publication Quality Plots are Easy'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Designed for Statistics'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='An Integrated Analysis &amp; Visualisation Platform'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='An Integrated Analysis &amp; Visualisation Platform'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='An Integrated Analysis &amp; Visualisation Platform'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='An Integrated Analysis &amp; Visualisation Platform'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='Massive Range of Visualisation Options'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='&#39;Basic&#39; Charts'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='&#39;Basic&#39; Charts'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='&#39;Basic&#39; Charts'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='Specific Subject Areas'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='GIS Capabilities'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='GIS Capabilities'>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='GIS Capabilities'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='On Cutting Edge'>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='Range of Dissemination Options'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='Examples of Dissemination'>
+         33
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=34 title='R Shiny'>
+         34
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=35 title='So What?'>
+         35
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=36 title='Any Questions?'>
+         36
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
